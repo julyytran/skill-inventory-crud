@@ -1,0 +1,12 @@
+---
+skills:
+- id: 2
+  title: Reading
+  description: yay
+- id: 3
+  title: Writing
+  description: yay
+- id: 4
+  title: "'Rithmatic"
+  description: yay
+total: 4
