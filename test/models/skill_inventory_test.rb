@@ -24,28 +24,32 @@ class SkillInventoryTest < Minitest::Test
 
   def test_can_find_specific_skill_from_id
     create_skill(3)
-    skill = skill_inventory.find(2)
+    skill_id = skill_inventory.all.last.id
 
-    assert_equal 2, skill.id
+    skill = skill_inventory.find(skill_id)
+
+    assert_equal skill_id, skill.id
   end
 
   def test_can_update_a_specific_skill
-    create_skill(1)
+    create_skill(2)
+
     new_data = {
       title: 'MY SKILL',
       description: 'COOL'
     }
-    task_id = skill_inventory.all.last.id
-    skill = skill_inventory.find(task_id)
 
-    assert_equal 'my skill 1', skill.title
-    assert_equal 'cool skill 1', skill.description
+    skill_id = skill_inventory.all.last.id
+    skill = skill_inventory.find(skill_id)
 
-    skill_inventory.update(1, new_data)
-    skill = skill_inventory.find(task_id)
+    assert_equal 'my skill 2', skill.title
+    assert_equal 'cool skill 2', skill.description
 
-    assert_equal 'MY SKILL', skill.title
-    assert_equal 'COOL', skill.description
+    skill_inventory.update(skill_id, new_data)
+    updated_skill = skill_inventory.find(skill_id)
+
+    assert_equal 'MY SKILL', updated_skill.title
+    assert_equal 'COOL', updated_skill.description
   end
 
   def test_can_delete_a_skill

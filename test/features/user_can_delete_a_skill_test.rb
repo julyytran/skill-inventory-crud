@@ -1,8 +1,6 @@
 require_relative '../test_helper'
 
-class UserCanDeleteASkillTest < Minitest::Test
-  include Capybara::DSL
-  include TestHelpers
+class UserCanDeleteASkill < FeatureTest
 
   def test_existing_skill_is_deleted_successfully
     create_skill(1)

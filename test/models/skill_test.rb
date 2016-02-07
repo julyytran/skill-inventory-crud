@@ -3,9 +3,9 @@ require_relative '../test_helper'
 class SkillTest < Minitest::Test
   def test_skill_attributes_assigned_correctly
     data = {
-      'id' => 1,
-      'title' => 'my skill',
-      'description' => 'cool skill'
+      :id => 1,
+      :title => 'my skill',
+      :description => 'cool skill'
     }
 
     skill = Skill.new(data)

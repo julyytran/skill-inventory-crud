@@ -1,18 +1,19 @@
 require_relative '../test_helper'
 
-class UserCanEditASkillTest < Minitest::Test
-  include Capybara::DSL
-  include TestHelpers
-
+class UserCanEditASkill < FeatureTest
   def test_existing_skill_is_updated_with_new_information
-    create_skill(1)
-    visit '/skills/1/edit'
+    skill_inventory.create({ title: 'Original Title',
+                         description: 'Original Description' })
+
+    skill_id = skill_inventory.all.last.id
+
+    visit "/skills/#{skill_id}/edit"
 
     fill_in 'skill[title]', with: 'Updated skill'
     fill_in 'skill[description]', with: 'Updated cool skill'
     click_button 'Submit'
 
-    assert_equal '/skills/1', current_path
+    assert_equal "/skills/#{skill_id}", current_path
     within 'h1' do
       assert page.has_content? 'Updated skill'
     end
