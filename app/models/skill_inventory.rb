@@ -1,3 +1,5 @@
+require_relative 'skill'
+
 class SkillInventory
   attr_reader :database
 
